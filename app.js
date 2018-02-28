@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = require('./settings.json').testtoken;
+const token = require('./settings.json').token;
 
 var prefix = "~"
 
