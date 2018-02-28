@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = require('./settings.json').testtoken;
+const token = require('./settings.json').token;
 
 var prefix = "~"
 
@@ -18,8 +18,7 @@ client.on('message', message => {
 	console.log(message.author.username + ' said: ' + message.content);
 
 	if(message.content === prefix + "help")
-	{
-		message.channel.send({embed: {
+	{ message.channel.send({embed: {
 			color: embed_color,
 			author: {
 				name: "ChicoBot",
