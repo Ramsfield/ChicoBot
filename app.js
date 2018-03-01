@@ -17,31 +17,32 @@ client.on('message', message => {
 
 	console.log(message.author.username + ' said: ' + message.content);
 
+	//Helper function
 	if(message.content === prefix + "help")
-	{ message.channel.send({embed: {
-					       color: embed_color,
-					       author: {
-						       name: "ChicoBot",
-						       icon_url: "https://i.imgur.com/SHoBd1U.gif"
-					       },
-					       fields:[{
-						       name:"General Help:",
-						       value: "Please message @Ramsfield#7696 for any questions, comments, or concerns.\n**~help** -- Brings up this message. But you probably knew that, cause you're here."
-					       },{
-						       name:"Moderation:",
-						       value: "**~mute `@user`** -- ***__Requires Lvl 15 - Monkey Face__*** -- Mutes a user\n**~unmute `@user`** -- ***__Requires Lvl 15 - Monkey Face__*** -- Unmutes a user"
-					       }],
-						       timestamp: new Date(),
-						       footer: {
-							       icon_url: client.user.avatarURL,
-							       text: message.author.username
-						       }
-				       }
-			       });}
-	//Mute function
-	//Checks if member is of role "Lvl 15 - Monkey Face"
-	if(message.content.startsWith(prefix+'mute')){
-
+	{
+		message.channel.send({embed: {
+			color: embed_color,
+			author: {
+				name: "ChicoBot",
+				icon_url: "https://i.imgur.com/SHoBd1U.gif"
+			},
+			fields:[{
+				name:"General Help:",
+				value: "Please message @Ramsfield#7696 for any questions, comments, or concerns.\n**~help** -- Brings up this message. But you probably knew that, cause you're here."
+			},{
+				name:"Moderation:",
+				value: "**~mute `@user`** -- ***__Requires Lvl 15 - Monkey Face__*** -- Mutes a user\n**~unmute `@user`** -- ***__Requires Lvl 15 - Monkey Face__*** -- Unmutes a user"
+			}],
+				timestamp: new Date(),
+				footer: {
+					icon_url: client.user.avatarURL,
+					text: message.author.username
+				}
+		}
+		});}
+		//Mute function
+		//Checks if member is of role "Lvl 15 - Monkey Face"
+	else if(message.content.startsWith(prefix+'mute')){
 		if(!message.member.roles.some(r=>["Lvl 15 - Monkey Face"].includes(r.name))){
 			return message.channel.send({embed: {
 				color: embed_color,
@@ -82,11 +83,13 @@ client.on('message', message => {
 		}
 	}
 	//Unmute function. Basically a copy paste of mute
-	if(message.content.startsWith(prefix+'unmute')){
+	else if(message.content.startsWith(prefix+'unmute')){
 
 		if(!message.member.roles.some(r=>["Lvl 15 - Monkey Face"].includes(r.name))){
-			return message.reply(" is not in the sudoers file. This incident will be reported."); 
-		}
+			return message.channel.send({embed: {
+				color: embed_color,
+				description:"You have no power here."
+			}}); 
 		else
 		{
 			let member = message.mentions.members.first();
@@ -97,12 +100,25 @@ client.on('message', message => {
 			return message.reply(member + " has been unmuted.");
 		}
 	}
-
-	if(message.content === prefix + 'ping'){
+	else if(message.content === prefix + 'ping'){
 		message.channel.send({embed: {
 			color: embed_color,
 			description:` \`${Date.now() - message.createdTimestamp} ms\` `
 		}});
+	}
+	else if(message.content.startsWith(prefix+'insult'))
+	{
+		var x = Math.floor(Math.random()*3);
+		let insulted = message.mentions.members.first();
+		if(!insulted)
+			insulted = message.author;
+		if(x === 0)
+			insulted = insulted+(", your mother was a hamster and your father smelt of elderberries.");
+		else if (x === 1)
+			insulted = insulted+(", I bet you put your shoes on before your socks.");
+		else if (x === 2)
+			insulted = insulted+(", I can't. It's too easy.");
+		message.channel.send(insulted);
 	}
 });
 

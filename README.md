@@ -1,2 +1,2 @@
 # ChicoBot
-	18/02/28 -- Figured out my biggest problem is between my keyboard and chair. It's working again. I'm sure it's obvious but I don't know how. Added a help function though. So that's cool.
+Welcome to the Chico Bot! If you have any questions, comments, or concerns, please contact me: Ramsfield#7696
