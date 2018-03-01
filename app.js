@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = require('./settings.json').token;
+const token = require('./settings.json').testtoken;
 
 var prefix = "~"
 
@@ -89,7 +89,7 @@ client.on('message', message => {
 			return message.channel.send({embed: {
 				color: embed_color,
 				description:"You have no power here."
-			}}); 
+			}});} 
 		else
 		{
 			let member = message.mentions.members.first();
