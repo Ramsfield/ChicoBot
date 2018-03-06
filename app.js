@@ -119,11 +119,11 @@ client.on('message', message => {
 		else if (x === 2)
 			insulted = insulted+(", I can't. It's too easy.");
 		else if (x === 3)
-			insulted = insulted+", even Bob Ross would call you a mistake.");
+			insulted = insulted+(", even Bob Ross would call you a mistake.");
 		else if (x === 4)
-			insulted = insulted+", may every sock you wear be slightly rotated, just enough for it to be uncomfortable.");
+			insulted = insulted+(", may every sock you wear be slightly rotated, just enough for it to be uncomfortable.");
 		else if (x === 5)
-			insulted = insulted+", may both sides of your pillow be warm.");
+			insulted = insulted+(", may both sides of your pillow be warm.");
 		message.channel.send(insulted);
 	}
 });
