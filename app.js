@@ -108,7 +108,7 @@ client.on('message', message => {
 	}
 	else if(message.content.startsWith(prefix+'insult'))
 	{
-		var x = Math.floor(Math.random()*3);
+		var x = Math.floor(Math.random()*6);
 		let insulted = message.mentions.members.first();
 		if(!insulted)
 			insulted = message.author;
@@ -118,6 +118,12 @@ client.on('message', message => {
 			insulted = insulted+(", I bet you put your shoes on before your socks.");
 		else if (x === 2)
 			insulted = insulted+(", I can't. It's too easy.");
+		else if (x === 3)
+			insulted = insulted+", even Bob Ross would call you a mistake.");
+		else if (x === 4)
+			insulted = insulted+", may every sock you wear be slightly rotated, just enough for it to be uncomfortable.");
+		else if (x === 5)
+			insulted = insulted+", may both sides of your pillow be warm.");
 		message.channel.send(insulted);
 	}
 });
