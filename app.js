@@ -8,6 +8,8 @@ var embed_color = 844660
 
 client.on('ready',() => {
 	console.log('Online');
+	client.user.setActivity('you sleep', {type: 'WATCHING'})
+		.catch(console.error);
 })
 
 client.on('message', message => {
