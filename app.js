@@ -128,6 +128,10 @@ client.on('message', message => {
 			insulted = insulted+(", may both sides of your pillow be warm.");
 		message.channel.send(insulted);
 	}
+	else if(message.content === prefix + 'uninsult')
+	{
+		message.channel.send("I take it back. That was too much. I'm very sorry. It will never happen again. Please forgive me. I didn't know what I was doing.")
+	}
 });
 
 client.login(token);
