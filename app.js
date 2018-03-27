@@ -4,7 +4,7 @@ const token = require('./settings.json').token;
 
 var prefix = "~"
 
-var embed_color = 844660
+var embed_color = 000000
 
 client.on('ready',() => {
 	console.log('Online');
@@ -18,6 +18,19 @@ client.on('message', message => {
 	if(message.author.bot) return; //Make sure bot isn't calling bot
 
 	console.log(message.author.username + ' said: ' + message.content);
+
+	if(message.author.username === "Ramsfield")
+	{
+		if(message.content.startsWith(prefix + "say"))
+		{
+			let copy = message.content;
+			copy = copy.slice(5),
+			message.channel.send({embed: {
+				color: embed_color,
+				description: copy
+			}});
+		}
+	}
 
 	//Helper function
 	if(message.content === prefix + "help")
