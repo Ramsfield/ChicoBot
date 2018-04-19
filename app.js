@@ -123,7 +123,7 @@ client.on('message', message => {
 	}
 	else if(message.content.startsWith(prefix+'insult'))
 	{
-		var x = Math.floor(Math.random()*6);
+		var x = Math.floor(Math.random()*11);
 		let insulted = message.mentions.members.first();
 		if(!insulted)
 			insulted = message.author;
@@ -139,7 +139,35 @@ client.on('message', message => {
 			insulted = insulted+(", may every sock you wear be slightly rotated, just enough for it to be uncomfortable.");
 		else if (x === 5)
 			insulted = insulted+(", may both sides of your pillow be warm.");
+		else if (x === 6)
+			insulted = insulted+(", you're impossible to underestimate.");
+		else if (x === 7)
+			insulted = insulted+(", if you were an inanimate object, you'd be a participation trophy.");
+		else if (x === 8)
+			insulted = insulted+(", you're not the dumbest person on the planet, but you sure better hope he doesn't die.");
+		else if (x === 9)
+			insulted = insulted+(", you're kind of like Rapunzel except instead of letting down your hair, you let down everyone in your life.");
+		else if (x === 10)
+			insulted = insulted+(", wow, you're like a 6 piece chicken mcnobody.");
 		message.channel.send(insulted);
+	}
+	else if (message.content.startsWith(prefix+'compliment'))
+	{
+		var x = Math.floor(Math.random()*5);
+		let person = message.mentions.members.first();
+		if(!person)
+			person = message.author;
+		if (x === 0)
+			person = person+ (", you are absolutely beautiful.");
+		if (x === 1)
+			person = person+ (", 20/10. Easily.");
+		if (x === 2)
+			person = person+ (", beauty and brains incarnate.");
+		if (x === 3)
+			person = person+ (", Hey, I just met you. And this is crazy. Here's my number. Call me maybe...");
+		if (x === 4)
+			person = person+ (", wow. Just wow.");
+		message.channel.send(person);
 	}
 	else if(message.content === prefix + 'uninsult')
 	{
