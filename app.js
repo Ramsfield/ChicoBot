@@ -90,6 +90,8 @@ client.on('message', message => {
 			else{
 				let muted = message.guild.roles.find("name", "Muted");
 				member.addRole(muted).catch(console.error);
+				const channel = member.guild.channels.find('name', 'modbox');
+				channel.send('@mods '+member+' has been muted.');
 				return message.channel.send({embed: {
 					color: embed_color,
 					description: member + " has been muted. Mods will be notified."
