@@ -6,6 +6,7 @@ var prefix = "~"
 
 var embed_color = 000000
 
+/*
 function sendMessage(msg) // Function to send messages -- still need to implement
 {
 	message.channel.send({embed: {
@@ -13,6 +14,7 @@ function sendMessage(msg) // Function to send messages -- still need to implemen
 		description: msg
 	}});
 }
+*/
 
 client.on('ready',() => {
 	console.log('Online');
