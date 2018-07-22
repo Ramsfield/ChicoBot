@@ -7,14 +7,14 @@ var prefix = "~"
 var embed_color = 000000
 
 /*
-function sendMessage(msg) // Function to send messages -- still need to implement
-{
-	message.channel.send({embed: {
-		color: embed_color,
-		description: msg
-	}});
-}
-*/
+   function sendMessage(msg) // Function to send messages -- still need to implement
+   {
+   message.channel.send({embed: {
+   color: embed_color,
+   description: msg
+   }});
+   }
+   */
 
 client.on('ready',() => {
 	console.log('Online');
@@ -129,73 +129,43 @@ client.on('message', message => {
 				description: member + " has been unmuted."
 			}});}
 	}
-	//Break Function
-	else if(message.content === prefix + 'break'){
-		let member = message.author;
-		let muted = message.guild.roles.find("name", "Muted");
-		member.addRole(muted).catch(console.error);
-		const channel = member.guild.channels.find('name', 'modbox');
-		channel.send(member+' has been muted.');
+	else if(message.content === prefix + 'ping'){
 		message.channel.send({embed: {
 			color: embed_color,
-			description: "You're currently on break. You may message again in: " + Date().getTime()+30;
-		}});}
-	//Kayaking Role Add
-	else if(message.content === prefix + 'kayak')
-	{
-	let kayaking = message.guild.roles.find("name", "oc - kayaking");
-	message.member.addRole(kayaking);
+			description:` \`${Date.now() - message.createdTimestamp} ms\` `
+		}});
 	}
-	//Hiking Role Add
-	else if(message.content === prefix + 'hiking')
+	else if(message.content.startsWith(prefix+'insult'))
 	{
-	let hiking = message.guild.roles.find("name", "oc - hiking");
-	message.member.addRole(hiking);
+		var msg = [", your mother was a hamster and your father smelt of elderberries.",  ", I bet you put your shoes on before your socks.", ", I can't. It's too easy.",", even Bob Ross would call you a mistake.",", may every sock you wear be slightly rotated, just enough for it to be uncomfortable.", ", may both sides of your pillow be warm.", ", you're impossible to underestimate.",", if you were an inanimate object, you'd be a participation trophy.",", you're not the dumbest person on the planet, but you sure better hope he doesn't die.",", you're kind of like Rapunzel except instead of letting down your hair, you let down everyone in your life.",", wow, you're like a 6 piece chicken mcnobody."];
+		var x = Math.floor(Math.random()*msg.length);
+		let insulted = message.mentions.members.first();
+		if(!person)
+			person = message.author;
+		message.channel.send({embed: {
+			color: embed_color,
+			description: insulted + msg[x]
+		}});
 	}
-	//Cycling Role Add
-	else if(message.content === prefix + 'cycling')
+	else if (message.content.startsWith(prefix+'compliment'))
 	{
-	let cycling = message.guild.roles.find("name", "oc - cycling");
-	message.member.addRole(cycling);
+		var msg = [", you are absolutely beautiful.", ", 20/10. Easily.",", beauty and brains incarnate.",", Hey, I just met you. And this is crazy. Here's my number. Call me maybe...",", wow. Just wow."];
+		var x = Math.floor(Math.random()*msg.length);
+		let person = message.mentions.members.first();
+		if(!person)
+			person = message.author;
+		message.channel.send({embed: {
+			color: embed_color,
+			description: person + msg[x]
+		}});
 	}
-}
-else if(message.content === prefix + 'ping'){
-	message.channel.send({embed: {
-		color: embed_color,
-		description:` \`${Date.now() - message.createdTimestamp} ms\` `
-	}});
-}
-else if(message.content.startsWith(prefix+'insult'))
-{
-	var msg = [", your mother was a hamster and your father smelt of elderberries.",  ", I bet you put your shoes on before your socks.", ", I can't. It's too easy.",", even Bob Ross would call you a mistake.",", may every sock you wear be slightly rotated, just enough for it to be uncomfortable.", ", may both sides of your pillow be warm.", ", you're impossible to underestimate.",", if you were an inanimate object, you'd be a participation trophy.",", you're not the dumbest person on the planet, but you sure better hope he doesn't die.",", you're kind of like Rapunzel except instead of letting down your hair, you let down everyone in your life.",", wow, you're like a 6 piece chicken mcnobody."];
-	var x = Math.floor(Math.random()*msg.length);
-	let insulted = message.mentions.members.first();
-	if(!person)
-		person = message.author;
-	message.channel.send({embed: {
-		color: embed_color,
-		description: insulted + msg[x]
-	}});
-}
-else if (message.content.startsWith(prefix+'compliment'))
-{
-	var msg = [", you are absolutely beautiful.", ", 20/10. Easily.",", beauty and brains incarnate.",", Hey, I just met you. And this is crazy. Here's my number. Call me maybe...",", wow. Just wow."];
-	var x = Math.floor(Math.random()*msg.length);
-	let person = message.mentions.members.first();
-	if(!person)
-		person = message.author;
-	message.channel.send({embed: {
-		color: embed_color,
-		description: person + msg[x]
-	}});
-}
-else if(message.content === prefix + 'uninsult')
-{
-	message.channel.send({embed: {
-		color: embed_color,
-		description: "I take it back. That was too much. I'm very sorry. It will never happen again. Please forgive me. I didn't know what I was doing."
-	}});
-}
+	else if(message.content === prefix + 'uninsult')
+	{
+		message.channel.send({embed: {
+			color: embed_color,
+			description: "I take it back. That was too much. I'm very sorry. It will never happen again. Please forgive me. I didn't know what I was doing."
+		}});
+	}
 });
 
 client.login(token);
